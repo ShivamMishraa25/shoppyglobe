@@ -2,9 +2,61 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import NotFound from './components/NotFound.jsx'
+import ProductDetail from './components/ProductDetail.jsx'
+import Cart from './components/Cart.jsx'
+import { Provider } from 'react-redux'
+import appStore from './utils/appStore.js'
+import ProductList from './components/ProductList.jsx'
+
+const route =  createBrowserRouter([
+    {
+        element: <App />,
+        path: "/",
+        errorElement: <NotFound />,
+        children: [
+            {
+                element: <ProductList />,
+                path: "/"
+            },
+            {
+                element: <ProductDetail />,
+                path: "/productdetail/:id"
+            },
+            {
+                element: <Cart />,
+                path: "/cart"
+            }
+        ]
+    },
+]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+    <StrictMode>
+        <Provider store={appStore}>
+            <RouterProvider router={route}>
+                <App />
+            </RouterProvider>
+        </Provider>
+    </StrictMode>,
 )
+
+
+// const route =  createBrowserRouter([
+//     {
+//         element: <App />,
+//         path: "/",
+//         errorElement: <NotFound />,
+//         children: [
+//             {
+//                 element: <ProductDetail />,
+//                 path: "/productdetail/:id"
+//             },
+//             {
+//                 element: <Cart />,
+//                 path: "/cart"
+//             }
+//         ]
+//     },
+// ]);
