@@ -6,17 +6,19 @@ import ImageCollage from './ImageCollage';
 import Footer from './Footer';
 
 function ProductList() {
+    // Fetch products and loading/error state
     const { products, error, isLoading } = useFetchProducts();
+
+    // UI state for filtering and searching
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [searchInput, setSearchInput] = useState('');
     const [search, setSearch] = useState('');
     const [lastAction, setLastAction] = useState('category'); // 'search' or 'category'
 
-    // Get unique categories from products
-    // const categories = ['All', ...Array.from(new Set(products.map(p => p.category)))];
+    // Hardcoded categories for demo; you can make this dynamic if needed
     const categories = ['All', 'fragrances', 'furniture', 'groceries', 'beauty'];
 
-    // Filter products by selected category and search query
+    // Filter products based on search or category
     let filteredProducts;
     if (lastAction === 'search' && search) {
         filteredProducts = products.filter(p =>
@@ -29,6 +31,7 @@ function ProductList() {
         );
     }
 
+    // Handle search form submit
     function handleSearch(e) {
         e.preventDefault();
         if (searchInput.trim() === '') {
@@ -39,11 +42,13 @@ function ProductList() {
         setLastAction('search');
     }
 
+    // Handle category button click
     function handleCategory(category) {
         setSelectedCategory(category);
         setLastAction('category');
     }
 
+    // Show loading skeletons while fetching
     if(isLoading) {
         return (
             <div className="product-list__loading">
@@ -58,6 +63,7 @@ function ProductList() {
             </div>
         );
     }
+    // Show error UI if fetch fails
     if(error) {
         return (
             <div className="product-list__error">
@@ -71,9 +77,12 @@ function ProductList() {
         );
     }
 
+    // Main product list UI
     return (
         <section className="product-list__section">
+            {/* Title */}
             <h1 className="product-list__title">Discover Our Products</h1>
+            {/* Search bar */}
             <form className="product-list__searchbar" onSubmit={handleSearch} autoComplete="off">
                 <input
                     type="text"
@@ -93,6 +102,7 @@ function ProductList() {
                     </svg>
                 </button>
             </form>
+            {/* Category filter buttons */}
             <div className="product-list__filters">
                 <p>Filter by Category:</p>
                 {categories.map(category => (
@@ -105,8 +115,10 @@ function ProductList() {
                     </button>
                 ))}
             </div>
+            {/* Product grid */}
             <div className="product-list product-list--responsive">
                 {filteredProducts.length === 0 ? (
+                    // No results found
                     <div className="product-list__noresults">
                         <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10" fill="#e0e7ff"/>
@@ -115,6 +127,7 @@ function ProductList() {
                         <div>No products found.</div>
                     </div>
                 ) : (
+                    // Render each product card
                     filteredProducts.map(product => (
                         <ProductItem product={product} key={product.id} />
                     ))
