@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useFetchProducts from './useFetchProducts';
 import ProductItem from './ProductItem';
+import Carousel from './Carousel';
 
 function ProductList() {
     const { products, error, isLoading } = useFetchProducts();
@@ -70,6 +71,7 @@ function ProductList() {
 
     return (
         <section className="product-list__section">
+            <Carousel />
             <h1 className="product-list__title">Discover Our Products</h1>
             <form className="product-list__searchbar" onSubmit={handleSearch} autoComplete="off">
                 <input
