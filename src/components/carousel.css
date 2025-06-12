@@ -229,6 +229,7 @@
         gap: 1.2rem;
     }
     .collage-col {
+        overflow-x: clip;
         flex-direction: row;
         gap: 1.2rem;
         min-width: 0;
@@ -270,7 +271,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 3rem;
-    border-radius: 1.2rem 1.2rem 0 0;
+    /* border-radius: 1.2rem 1.2rem 0 0; */
     box-shadow: 0 -2px 18px rgba(99, 102, 241, 0.08);
     font-family: 'Segoe UI', 'Arial', sans-serif;
     animation: fadeIn 0.7s;

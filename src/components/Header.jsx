@@ -17,9 +17,9 @@ function Header() {
             </div>
             <nav className={`header__nav${menuOpen ? ' open' : ''}`}>
                 <Link to={"/"} className="header__link" onClick={() => setMenuOpen(false)}>Home</Link>
-                <Link to={"/shop"} className="header__link" onClick={() => setMenuOpen(false)}>Shop</Link>
-                <Link to={"/about"} className="header__link" onClick={() => setMenuOpen(false)}>About</Link>
-                <Link to={"/contact"} className="header__link" onClick={() => setMenuOpen(false)}>Contact</Link>
+                <Link to={"/"} className="header__link" onClick={() => setMenuOpen(false)}>Shop</Link>
+                <Link to={"/"} className="header__link" onClick={() => setMenuOpen(false)}>About</Link>
+                <Link to={"/"} className="header__link" onClick={() => setMenuOpen(false)}>Contact</Link>
             </nav>
             <div className='burgerAndCart'>
                 <button

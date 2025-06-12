@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import appStore from './utils/appStore.js'
 import ProductList from './components/ProductList.jsx'
 import Checkout from './components/Checkout.jsx'
+import Homepage from './pages/Homepage.jsx'
 
 const route =  createBrowserRouter([
     {
@@ -18,7 +19,7 @@ const route =  createBrowserRouter([
         errorElement: <NotFound />,
         children: [
             {
-                element: <ProductList />,
+                element: <Homepage />,
                 path: "/"
             },
             {

@@ -18,9 +18,9 @@ function Footer() {
                     <div className="footer__section">
                         <div className="footer__section-title">Contact</div>
                         <div className="footer__section-content">
-                            Email: support@shoppyglobe.com<br />
-                            Phone: +1-800-555-0199<br />
-                            Address: 123 Market St, New York, NY
+                            Email: shivam.m4464@gmail.com<br />
+                            Phone: +91-7355474464<br />
+                            Address: Prayagraj
                         </div>
                     </div>
                     <div className="footer__section">
@@ -37,7 +37,7 @@ function Footer() {
                         <div className="footer__section-content">
                             We’re hiring!<br />
                             Join our team and shape the future of shopping.<br />
-                            Email: careers@shoppyglobe.com
+                            Email: shivam.m4464@gmail.com
                         </div>
                     </div>
                     <div className="footer__section">

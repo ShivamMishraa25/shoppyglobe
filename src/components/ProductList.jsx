@@ -73,7 +73,6 @@ function ProductList() {
 
     return (
         <section className="product-list__section">
-            <Carousel />
             <h1 className="product-list__title">Discover Our Products</h1>
             <form className="product-list__searchbar" onSubmit={handleSearch} autoComplete="off">
                 <input
@@ -121,8 +120,6 @@ function ProductList() {
                     ))
                 )}
             </div>
-            <ImageCollage />
-            <Footer />
         </section>
     )
 }
