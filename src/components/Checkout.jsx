@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearCart } from '../utils/cartSlice'
 import './style.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Checkout() {
     const cart = useSelector(store => store.cart);
     const dispatch = useDispatch();
     const [form, setForm] = useState({ name: '', email: '', address: '' });
     const [orderPlaced, setOrderPlaced] = useState(false);
+    const navigate = useNavigate();
 
     const subtotal = cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
     const tax = subtotal * 0.08;
@@ -46,6 +47,16 @@ function Checkout() {
 
     return (
         <section className="checkout-section">
+            <button
+                className="product-detail__back-btn"
+                onClick={() => navigate(-1)}
+                aria-label="Back"
+            >
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                    <path d="M15 19l-7-7 7-7" stroke="#6366f1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span>Back</span>
+            </button>
             <h1 className="checkout-title">Checkout</h1>
             <div className="checkout-content">
                 <div className="checkout-cart">

@@ -2,10 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import CartItem from './CartItem'
 import './style.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Cart() {
     const cart = useSelector(store => store.cart);
+    const navigate = useNavigate();
 
     // Calculate total price
     const totalPrice = cart.reduce(
@@ -15,6 +16,16 @@ function Cart() {
 
     return (
         <section className="cart-section">
+            <button
+                className="product-detail__back-btn"
+                onClick={() => navigate(-1)}
+                aria-label="Back"
+            >
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                    <path d="M15 19l-7-7 7-7" stroke="#6366f1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span>Back</span>
+            </button>
             <h1 className="cart-title">Your Shopping Cart</h1>
             {cart.length === 0 ? (
                 <div className="cart-empty">

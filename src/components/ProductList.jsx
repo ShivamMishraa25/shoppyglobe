@@ -91,6 +91,7 @@ function ProductList() {
                 </button>
             </form>
             <div className="product-list__filters">
+                <p>Filter by Category:</p>
                 {categories.map(category => (
                     <button
                         key={category}

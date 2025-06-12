@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import useFetchProducts from './useFetchProducts'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../utils/cartSlice'
@@ -9,6 +9,7 @@ function ProductDetail() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { products, error, isLoading } = useFetchProducts();
+    const navigate = useNavigate();
 
     const product = products.find(p => String(p.id) === String(id));
 
@@ -38,6 +39,16 @@ function ProductDetail() {
 
     return (
         <section className="product-detail__section">
+            <button
+                className="product-detail__back-btn"
+                onClick={() => navigate(-1)}
+                aria-label="Back"
+            >
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                    <path d="M15 19l-7-7 7-7" stroke="#6366f1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span>Back</span>
+            </button>
             <div className="product-detail__card">
                 <div className="product-detail__img-wrap">
                     <img src={product.thumbnail} alt={product.title} className="product-detail__img" />
