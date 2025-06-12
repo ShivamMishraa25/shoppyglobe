@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './carousel.css';
-import saleImage from "../assets/images/saleImage.avif"
+import banner1 from "../assets/images/banner1.webp"
+import banner2 from "../assets/images/banner2.webp"
+import banner3 from "../assets/images/banner3.webp"
 
 const slides = [
     {
-        image: saleImage,
+        image: banner3,
         caption: 'Welcome to ShoppyGlobe – Discover the best deals!'
     },
     {
-        image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+        image: banner1,
         caption: 'Shop the latest trends in fashion, tech, and more'
     },
     {
-        image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
+        image: banner2,
         caption: 'Fast delivery, secure checkout, and top brands'
     }
 ];

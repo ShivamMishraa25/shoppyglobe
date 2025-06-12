@@ -1,15 +1,19 @@
 import React from "react";
 import "./carousel.css";
+import fashion1 from "../assets/images/fashion1.png"
+import fashion2 from "../assets/images/fashion2.png"
+import fashion3 from "../assets/images/fashion3.png"
+import fashion4 from "../assets/images/fashion4.webp"
 
 const images = [
     // Replace these with your actual product images
     "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80",
     "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
     "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1513708927688-890fe41c3c34?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    fashion1,
+    fashion2,
+    fashion3,
+    fashion4,
     "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80",
 ];
 

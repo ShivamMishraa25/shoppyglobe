@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useFetchProducts from './useFetchProducts';
 import ProductItem from './ProductItem';
 import Carousel from './Carousel';
+import ImageCollage from './ImageCollage';
+import Footer from './Footer';
 
 function ProductList() {
     const { products, error, isLoading } = useFetchProducts();
@@ -119,6 +121,8 @@ function ProductList() {
                     ))
                 )}
             </div>
+            <ImageCollage />
+            <Footer />
         </section>
     )
 }
