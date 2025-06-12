@@ -5,15 +5,41 @@ import ProductItem from './ProductItem';
 function ProductList() {
     const { products, error, isLoading } = useFetchProducts();
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const [searchInput, setSearchInput] = useState('');
+    const [search, setSearch] = useState('');
+    const [lastAction, setLastAction] = useState('category'); // 'search' or 'category'
 
     // Get unique categories from products
     // const categories = ['All', ...Array.from(new Set(products.map(p => p.category)))];
     const categories = ['All', 'fragrances', 'furniture', 'groceries', 'beauty'];
 
-    // Filter products by selected category
-    const filteredProducts = selectedCategory === 'All'
-        ? products
-        : products.filter(p => p.category === selectedCategory);
+    // Filter products by selected category and search query
+    let filteredProducts;
+    if (lastAction === 'search' && search) {
+        filteredProducts = products.filter(p =>
+            p.title.toLowerCase().includes(search.toLowerCase()) ||
+            p.description.toLowerCase().includes(search.toLowerCase())
+        );
+    } else {
+        filteredProducts = products.filter(p =>
+            selectedCategory === 'All' || p.category === selectedCategory
+        );
+    }
+
+    function handleSearch(e) {
+        e.preventDefault();
+        if (searchInput.trim() === '') {
+            alert('Please enter a search term.');
+            return;
+        }
+        setSearch(searchInput);
+        setLastAction('search');
+    }
+
+    function handleCategory(category) {
+        setSelectedCategory(category);
+        setLastAction('category');
+    }
 
     if(isLoading) {
         return (
@@ -45,21 +71,50 @@ function ProductList() {
     return (
         <section className="product-list__section">
             <h1 className="product-list__title">Discover Our Products</h1>
+            <form className="product-list__searchbar" onSubmit={handleSearch} autoComplete="off">
+                <input
+                    type="text"
+                    className="product-list__search-input"
+                    placeholder="Search products..."
+                    value={searchInput}
+                    onChange={e => setSearchInput(e.target.value)}
+                />
+                <button
+                    type="submit"
+                    className="product-list__search-btn"
+                    aria-label="Search"
+                >
+                    <svg className="product-list__search-icon" width="22" height="22" fill="none" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7" stroke="#fff" strokeWidth="2"/>
+                        <path d="M20 20l-3.5-3.5" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                </button>
+            </form>
             <div className="product-list__filters">
                 {categories.map(category => (
                     <button
                         key={category}
-                        className={`product-list__filter-btn${selectedCategory === category ? ' active' : ''}`}
-                        onClick={() => setSelectedCategory(category)}
+                        className={`product-list__filter-btn${selectedCategory === category && lastAction === 'category' ? ' active' : ''}`}
+                        onClick={() => handleCategory(category)}
                     >
                         {category}
                     </button>
                 ))}
             </div>
             <div className="product-list product-list--responsive">
-                {filteredProducts.map(product => (
-                    <ProductItem product={product} key={product.id} />
-                ))}
+                {filteredProducts.length === 0 ? (
+                    <div className="product-list__noresults">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" fill="#e0e7ff"/>
+                            <path d="M9 10h6M9 14h2" stroke="#6366f1" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                        <div>No products found.</div>
+                    </div>
+                ) : (
+                    filteredProducts.map(product => (
+                        <ProductItem product={product} key={product.id} />
+                    ))
+                )}
             </div>
         </section>
     )
